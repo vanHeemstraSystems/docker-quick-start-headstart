@@ -11,11 +11,17 @@ Based on "Docker Quick Start" at https://linuxacademy.com/cp/modules/view/id/284
 ### 1200 Course Introduction
 00:01:07
 
+See [README.md](./1200/README.md)
+
 ### 1300 Installation and Configuration: Linux — Part 1
 00:07:32
 
+See [README.md](./1300/README.md)
+
 ### 1400 Installation and Configuration: Linux — Part 2
 00:03:52
+
+See [README.md](./1400/README.md)
 
 ### 1500 Docker Hub Basics
 00:12:41
