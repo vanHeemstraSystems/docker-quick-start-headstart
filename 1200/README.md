@@ -1,0 +1,7 @@
+# 1200 Course Introduction
+
+In this course, we will discuss basic Docker concepts, including base images, Dockerfiles, and containers. However, this course is not a Deep Dive. In this Quick Start course, we will focus on getting you up and running with your own Docker environment.
+
+## Transcript
+
+Hey, everyone, it's El Marquez with  linuxacademy.com and today we're talking docker, but to be honest with you, we're not going to be doing a lot of talking because we are going to get behind that command line. This course will cover a Docker Quickstart, Which means we're getting you up and running. We're going to cover installing Docker on Linux and then we'll actually cover how to install Docker on Windows. Although this course most of our demos and our labs are going to be in a Linux environment. In the end, docker really runs regardless of the platform that you're using. So the way we're going to cover this is we'll start out with the Docker Hub. Then we'll get you up and running on your own environment. Running your own containers will take a step back and discuss how did this container start? So we'll discuss the docker image. Then we'll delve into understanding the docker file and how to create your own images. We'll have a few other adventures along the way, but I'm guessing most of you are ready to get started. So go ahead and close out this video and we'll get started on our journey.
