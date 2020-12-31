@@ -196,7 +196,13 @@ IMAGE ID
 9499db781771
 ```
 
-Now this ID is used to uniquely identify this image. It's almost like the images name, though we can refer to it as ubuntu we can also  refer to it by its image name to be able to interact with it. So whereas I could run a container with Docker Run ubuntu 16 04.  I could also run the exact same container with a command docker run and the image ID. Now something interesting to note is that this image ID, isn't actually, it's full image ID. We can add the no trunk flag in order to be able to see the full ID. You can see that it says that it's a Sha256 image ID. What it really is is a hash, a sha256 hash of all the image layers that were created to compose this to compose this image. 
+Now this ID is used to uniquely identify this image. It's almost like the images name, though we can refer to it as ubuntu we can also  refer to it by its image name to be able to interact with it. So whereas I could run a container with Docker Run ubuntu 16 04.  I could also run the exact same container with a command docker run and the image ID. 
+
+```
+$ docker run 9499db781771
+```
+
+Now something interesting to note is that this image ID, isn't actually, it's full image ID. We can add the no trunk flag in order to be able to see the full ID. You can see that it says that it's a Sha256 image ID. What it really is is a hash, a sha256 hash of all the image layers that were created to compose this to compose this image. 
 
 Later on, we can discuss about how this could be used in security to ensure that you are pulling the image that you believe that you are pulling all right. 
 
