@@ -18,8 +18,6 @@ $ wget -qO- https://get.docker.com |sh
 
 So here we're logged into our cloud server and you can see that we're gonna be using the W get command in order to pull the script onto our server so that we can install Docker. This script is provided by Docker at get.docker.com 
 
-*** WE ARE HERE ***
-
 However, you don't blindly want to run scripts on your server. Of course, you want to want to see what's actually located or composed of this script. So let's go ahead and go to that URL and you can see here what commands this script is going to be running. And also states that if you want to make sure to verify the contents of the script, you can do so on Docker GitHub. 
 
 = script content goes here =
@@ -51,7 +49,39 @@ $ sudo usermod -aG docker cloud_user
 But we seem to have a problem here. 
 
 ```
-
+$ docker version
 ```
 
-It says the docker is unable to connect to our daemon. That's because though we did do our install process, we've not gone ahead and enabled as well as started the docker daemon on this system. So do so. But remember to use your sudo command as this is a privileged action to be able to run a service on a server. Then once we've done so, though, we still can't seem to use those docker. We still can't seem to use those Docker commands and that's because we'll need to log out and log back into our server to ensure that our permissions have been read by the system. Let's go ahead and do that. And once we've done so, we can go ahead and use commands like Docker version, and we're ready to go. So now you know how to install docker on Linux in two ways. One being the more extended version, but I really would encourage you to take the time and learn that before, just automatically opting to use a scripted version. Go ahead and close out this video and we can continue on learning more about Docker. 
+```
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the Docker daemon up and running?
+```
+
+It says the docker is unable to connect to our daemon. That's because though we did do our install process, we've not gone ahead and enabled as well as started the docker daemon on this system. So do so. But remember to use your sudo command as this is a privileged action to be able to run a service on a server. 
+
+```
+$ sudo systemctl start docker
+```
+
+```
+$ sudo systemctl enable docker 
+```
+
+Then once we've done so, though, we still can't seem to use those docker. 
+
+```
+$ docker info
+```
+
+We still can't seem to use those Docker commands and that's because we'll need to log out and log back into our server to ensure that our permissions have been read by the system. Let's go ahead and do that. 
+
+```
+$ exit
+```
+
+And once we've done so, we can go ahead and use commands like Docker version, and we're ready to go. 
+
+```
+$ docker version
+```
+
+So now you know how to install docker on Linux in two ways. One being the more extended version, but I really would encourage you to take the time and learn that before, just automatically opting to use a scripted version. Go ahead and close out this video and we can continue on learning more about Docker. 
