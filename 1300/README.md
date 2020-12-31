@@ -173,6 +173,35 @@ But the reason that I said you know that we're going to go back to that sudo to 
 $ clear
 ```
 
+So we do our docker run hello world and suddenly we have permission denied. 
+
+```
+$ docker run hello-world
+```
+
+```
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+```
+
+That's because our cloud user (note: this is specific for Linux Academy) does not have the permissions to be able to use Docker. And so we can modify this or correct this issue by adding our cloud user to our docker group. 
+
+```
+sudo usermod -a -G docker cloud_user
+```
+
+Now, although there are ways to get around needing to log out and log back in when you make these fundamental changes in a Linux environment, it really is best practices just to log out of that user and log back in, in order to ensure that all the environmental variables and changes are read. 
+
+```
+$ exit
+```
+
+Now that that's a card, let's go ahead and try that command one more time without sudo. 
+
+```
+$ docker run hello-world
+```
+
 *** WE ARE HERE ***
 
-So we do our docker run hello world and suddenly we have permission denied. That's because our cloud user does not have the permissions to be able to use Docker. And so we can modify this or correct this issue by adding our cloud user to our docker group. Now, although there are ways to get around needing to log out and log back in when you make these fundamental changes in a Linux environment, it really is best practices just to log out of that user and log back in, in order to ensure that all the environmental variables and changes are read. Now that that's a card, let's go ahead and try that command one more time without sudo. And I will have you noticed one difference, when I ran this command were no longer needing to pull that image from the docker hub because the docker, because the image already exists on our system Okay, everyone as simple was that you are now up and running with your own docker environment. Now, technically, I guess we did cheat a bit because we did run our first container. So in order to understand how you did that and to continue using your environment, let's go ahead and close out this video and continue on with our journey. 
+And I will have you noticed one difference, when I ran this command were no longer needing to pull that image from the docker hub because the docker, because the image already exists on our system Okay, everyone as simple was that you are now up and running with your own docker environment. Now, technically, I guess we did cheat a bit because we did run our first container. So in order to understand how you did that and to continue using your environment, let's go ahead and close out this video and continue on with our journey. 
