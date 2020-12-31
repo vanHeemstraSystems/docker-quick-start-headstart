@@ -42,4 +42,16 @@ You may press Ctrl+C now to abort this script.
 + sudo -E sh -c 'yum install -y -q yum-utils'
 ```
 
-Now, I'm gonna go ahead and jump in here for a second and do a little truth in advertising maybe that's because sometimes this GPG section really does take a while to happen. And I don't want you just sitting here staring at this screen. So I'm gonna go ahead and edit it down through the magic of video editing. So you may need to pause this video and allow the installation to continue. But once we are up and running and installed, it runs just like our other Docker environment we'll go ahead and add our cloud user to the docker groups so that we can use those privileged docker commands. But we seem to have a problem here. It says the docker is unable to connect to our daemon. That's because though we did do our install process, we've not gone ahead and enabled as well as started the docker daemon on this system. So do so. But remember to use your sudo command as this is a privileged action to be able to run a service on a server. Then once we've done so, though, we still can't seem to use those docker. We still can't seem to use those Docker commands and that's because we'll need to log out and log back into our server to ensure that our permissions have been read by the system. Let's go ahead and do that. And once we've done so, we can go ahead and use commands like Docker version, and we're ready to go. So now you know how to install docker on Linux in two ways. One being the more extended version, but I really would encourage you to take the time and learn that before, just automatically opting to use a scripted version. Go ahead and close out this video and we can continue on learning more about Docker. 
+Now, I'm gonna go ahead and jump in here for a second and do a little truth in advertising maybe that's because sometimes this GPG section really does take a while to happen. And I don't want you just sitting here staring at this screen. So I'm gonna go ahead and edit it down through the magic of video editing. So you may need to pause this video and allow the installation to continue. But once we are up and running and installed, it runs just like our other Docker environment we'll go ahead and add our cloud user (note: this is specific to Linux Academy) to the docker groups so that we can use those privileged docker commands. 
+
+```
+$ sudo usermod -aG docker cloud_user
+```
+
+But we seem to have a problem here. 
+
+```
+
+```
+
+It says the docker is unable to connect to our daemon. That's because though we did do our install process, we've not gone ahead and enabled as well as started the docker daemon on this system. So do so. But remember to use your sudo command as this is a privileged action to be able to run a service on a server. Then once we've done so, though, we still can't seem to use those docker. We still can't seem to use those Docker commands and that's because we'll need to log out and log back into our server to ensure that our permissions have been read by the system. Let's go ahead and do that. And once we've done so, we can go ahead and use commands like Docker version, and we're ready to go. So now you know how to install docker on Linux in two ways. One being the more extended version, but I really would encourage you to take the time and learn that before, just automatically opting to use a scripted version. Go ahead and close out this video and we can continue on learning more about Docker. 
