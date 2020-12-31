@@ -202,7 +202,19 @@ Now this ID is used to uniquely identify this image. It's almost like the images
 $ docker run 9499db781771
 ```
 
-Now something interesting to note is that this image ID, isn't actually, it's full image ID. We can add the no trunk flag in order to be able to see the full ID. You can see that it says that it's a Sha256 image ID. What it really is is a hash, a sha256 hash of all the image layers that were created to compose this to compose this image. 
+Now something interesting to note is that this image ID, isn't actually, it's full image ID. We can add the no trunk flag in order to be able to see the full ID. 
+
+```
+$docker images --no-trunc
+```
+
+```
+REPOSITORY    TAG       IMAGE ID                                                                  CREATED         SIZE
+ubuntu        16.04     sha256:9499db7817713c4d10240ca9f5386b605ecff7975179f5a46e7ffd59fff462ee   5 weeks ago     131MB
+hello-world   latest    sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b   12 months ago   13.3kB
+```
+
+You can see that it says that it's a Sha256 image ID. What it really is is a hash, a sha256 hash of all the image layers that were created to compose this to compose this image. 
 
 Later on, we can discuss about how this could be used in security to ensure that you are pulling the image that you believe that you are pulling all right. 
 
