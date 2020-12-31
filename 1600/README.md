@@ -90,18 +90,22 @@ I'm not gonna be spending too much time on the ***Docker Files*** will have its 
 
 However, I did want you to be able to see what was occurring. 
 
-*** WE ARE HERE ***
-
 I could check out our official ubuntu image. I go down to 16 04 and I can see the docker file that it was used in order to create that ubuntu 16 04 image, every change that occurs to this image is going to cause a new layer. 
 
 ```
 https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile
 ```
 
+So they're saying from scratch, meaning that this isn't based on anything else. We're going to add this file. 
+
 ```
 FROM scratch
 ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
+```
 
+Then we're going to run this section. There's might be thinking, Well, why didn't that Cause multiple layers? That's because they scripted it in such a way that this is really only running one command. You can see that by your  and and commands here. So that was layer two. 
+
+```
 # a few minor docker-specific tweaks
 # see https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap
 RUN set -xe \
@@ -132,12 +136,20 @@ RUN set -xe \
 	\
 # https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L134-L151
 	&& echo 'Apt::AutoRemove::SuggestsImportant "false";' > /etc/apt/apt.conf.d/docker-autoremove-suggests
+```
 
+Then layer three is gonna be the removal of this. 
+
+```
 # delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
 # this forces "apt-get update" in dependent images, which is also good
 # (see also https://bugs.launchpad.net/cloud-images/+bug/1699913)
+```
 
+Then layer four, is going to be your maker change. 
+
+```
 # make systemd-detect-virt return "docker"
 # See: https://github.com/systemd/systemd/blob/aa0c34279ee40bce2f9681b496922dedbadfca19/src/basic/virt.c#L434
 RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
@@ -145,7 +157,47 @@ RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 CMD ["/bin/bash"]
 ```
 
-So they're saying from scratch, meaning that this isn't based on anything else. We're going to add this file. Then we're going to run this section. There's might be thinking, Well, why didn't that Cause multiple layers? That's because they scripted it in such a way that this is really only running one command. You can see that by your  and and commands here. So that was later two. Then layer three is gonna be the removal of this, then layer four, is going to be your maker change. 
+So now that we have a little bit more transparency to what it is that we've pulled from the Docker Hub, let's take a look at how we are going to be interacting with our docker image. So let's go ahead and do Docker Images again so that we can see the image on our system. 
 
+```
+$ docker images
+```
 
-So now that we have a little bit more transparency to what it is that we've pulled from the Docker Hub, let's take a look at how we are going to be interacting with our docker image. So let's go ahead and do Docker Images again so that we can see the image on our system. There's a bit of information here. Now I'm gonna go ahead and just close out my LucidChart for a little bit so that you guys are better able to see the information on the screen. Okay, so running Docker image we see the repository that this image was pulled from was are ubuntu repository. Now this image was tagged with the version being 16 04 Now One thing I want you to understand is that a tag really has absolutely no value when it comes to the image other than what we put on it. Think about tags as one of those labels that comes out of the label maker. You can write whatever you want on it, and it just represents whatever value you put on it. So we could use tags to label version numbers. We could use them to label the person who's created it. You have a tag called maintainer that is a docker standard for that. You know the tag is going to be L's image, or we can use tag to, we can use tags for separating development from production. Then we have our image ID Now this ID is used to uniquely identify this image. It's almost like the images name, though we can refer to it as ubuntu we can also  refer to it by its image name to be able to interact with it. So whereas I could run a container with Docker Run ubuntu 16 04.  I could also run the exact same container with a command docker run and the image ID Now something interesting to note is that this image ID, isn't actually, it's full image ID We can add the no trunk flag in order to be able to see the full ID. You can see that it says that it's a Sha256 image ID. What it really is is a hash, a sha256 hash of all the image layers that were created to compose this to compose this image. Later on, we can discuss about how this could be used in security to ensure that you are pulling the image that you believe that you are pulling all right. I wanted a hop back on the screen just to say that I hope that you now have a better understanding of what a docker image is of how a docker image is composed of layers and how we're able to change what essentially is our base image into a whole new image that fits our needs. For now, though, you can go ahead and close out this video and continue on with your journey.
+There's a bit of information here. 
+
+```
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+ubuntu        16.04     9499db781771   5 weeks ago     131MB
+hello-world   latest    bf756fb1ae65   12 months ago   13.3kB
+```
+
+Now I'm gonna go ahead and just close out my LucidChart for a little bit so that you guys are better able to see the information on the screen. 
+
+Okay, so running Docker image we see the repository that this image was pulled from was are ubuntu repository. 
+
+```
+REPOSITORY
+ubuntu
+```
+
+Now this image was tagged with the version being 16 04 
+
+```
+TAG
+16.04
+```
+
+Now One thing I want you to understand is that a tag really has absolutely no value when it comes to the image other than what we put on it. Think about tags as one of those labels that comes out of the label maker. You can write whatever you want on it, and it just represents whatever value you put on it. So we could use tags to label version numbers. We could use them to label the person who's created it. You have a tag called maintainer that is a docker standard for that. You know the tag is going to be L's image, or we can use tag to, we can use tags for separating development from production. 
+
+Then we have our image ID.
+
+```
+IMAGE ID
+9499db781771
+```
+
+Now this ID is used to uniquely identify this image. It's almost like the images name, though we can refer to it as ubuntu we can also  refer to it by its image name to be able to interact with it. So whereas I could run a container with Docker Run ubuntu 16 04.  I could also run the exact same container with a command docker run and the image ID. Now something interesting to note is that this image ID, isn't actually, it's full image ID. We can add the no trunk flag in order to be able to see the full ID. You can see that it says that it's a Sha256 image ID. What it really is is a hash, a sha256 hash of all the image layers that were created to compose this to compose this image. 
+
+Later on, we can discuss about how this could be used in security to ensure that you are pulling the image that you believe that you are pulling all right. 
+
+I wanted a hop back on the screen just to say that I hope that you now have a better understanding of what a docker image is of how a docker image is composed of layers and how we're able to change what essentially is our base image into a whole new image that fits our needs. For now, though, you can go ahead and close out this video and continue on with your journey.
