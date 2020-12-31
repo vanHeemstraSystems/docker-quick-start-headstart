@@ -227,6 +227,4 @@ For more examples and ideas, visit:
 
 And I will have you noticed one difference, when I ran this command were no longer needing to pull that image from the docker hub because the docker, because the image already exists on our system. 
 
-*** WE ARE HERE ***
-
 Okay, everyone as simple was that you are now up and running with your own docker environment. Now, technically, I guess we did cheat a bit because we did run our first container. So in order to understand how you did that and to continue using your environment, let's go ahead and close out this video and continue on with our journey. 
