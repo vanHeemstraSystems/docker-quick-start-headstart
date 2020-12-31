@@ -202,6 +202,31 @@ Now that that's a card, let's go ahead and try that command one more time withou
 $ docker run hello-world
 ```
 
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+
+And I will have you noticed one difference, when I ran this command were no longer needing to pull that image from the docker hub because the docker, because the image already exists on our system. 
+
 *** WE ARE HERE ***
 
-And I will have you noticed one difference, when I ran this command were no longer needing to pull that image from the docker hub because the docker, because the image already exists on our system Okay, everyone as simple was that you are now up and running with your own docker environment. Now, technically, I guess we did cheat a bit because we did run our first container. So in order to understand how you did that and to continue using your environment, let's go ahead and close out this video and continue on with our journey. 
+Okay, everyone as simple was that you are now up and running with your own docker environment. Now, technically, I guess we did cheat a bit because we did run our first container. So in order to understand how you did that and to continue using your environment, let's go ahead and close out this video and continue on with our journey. 
