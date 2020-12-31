@@ -82,7 +82,7 @@ Our update, which has created a different change on that image, would become ano
 
 In order to really understand what caused these layers to be created, it's best to really look at the docker file now. 
 
-I'm not gonna be spending too much time on the Docker Files will have its own video. 
+I'm not gonna be spending too much time on the ***Docker Files*** will have its own video. 
 
 However, I did want you to be able to see what was occurring. 
 
