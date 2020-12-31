@@ -26,6 +26,8 @@ See [README.md](./1400/README.md)
 ### 1500 Docker Hub Basics
 00:12:41
 
+See [README.md](./1500/README.md)
+
 ### 1600 Docker Images
 00:09:26
 
