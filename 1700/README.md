@@ -12,6 +12,11 @@ Now, if you're following along with our quick start guide, you know that we just
 
 Then we'll go ahead and do an update and will install Python three. 
 
+| Onboarding |
+| -- | apt-get install python3 | -- |
+| -- | apt-get update | -- |
+| -- | Base image: Ubuntu 16.04 | -- |
+
 And we're not gonna go too far into all of the different configuration changes that you could do with the Docker file. If you'd like to tackle that, go ahead and follow up to this course with the Docker deep dive course. 
 
 But in the meantime, let's go ahead and get behind that command line and start getting our hands dirty. 
