@@ -12,7 +12,7 @@ Now, if you're following along with our quick start guide, you know that we just
 
 Then we'll go ahead and do an update and will install Python three. 
 
-| Onboarding |
+| | Onboarding | |
 | -- | -- | -- |
 | | apt-get install python3 | |
 | | apt-get update | |
