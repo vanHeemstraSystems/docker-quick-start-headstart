@@ -158,14 +158,6 @@ Successfully built f70b04ba7ac3
 
 We can prove that by doing your Docker images. And here you see your image. I d is the same as what was built. 
 
-Let's go over it one last time with our lucid chart, as it might make it clear. So we had right here. We sent the context to the Docker Damon. That's what was inside of our file. And step one was from Ubuntu 16.04 to have that image pulled. That would be this right here. Then I decided to add something a little bit different here. And that's because we went ahead and did our label maintainer from there. We went ahead and did our run at get update. That's gonna be here. And so there was a container container 962b was created with this base image and an update was run. When that update was completed, the container was closed. So it removed that container. Then a container was spun up. With that Intermedia image being the Ubuntu 16.04 that had been updated. There was an intermediate image, which was this right here. A container with this image layer was spun up and python three was installed. Once that was completed, that container was removed and what was left, which would be in this image layer here was our actual layer that would keep. Although we had an image layer built here and here with our maintainer label, those were simply kept in cash. And as they weren't what we requested, they were not kept on the system. But if this is the case, then what's this image here? Well, it's our Ubuntu image which we pulled down from the Docker Hub in order for us to be able to create our new image because it's what our new image was based on. 
-
-Okay, guys, that's it. 
-
-That is how you start out by building your own Docker Images. Hopefully, right now, you're feeling a little comfortable with the concept. And you went I'd encourage you to stick around active this video if you follow it along with your own environment and build out a couple of different Docker files, see what changes you can make and how that changes the resulting image layers and you know it. Just have fun and get to know your Docker environment. 
-
-For now, though, you can go ahead and close out this video and continue on with your Docker journey. 
-
 ```
 $ docker images
 REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
@@ -173,3 +165,11 @@ REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
 ubuntu        16.04     9499db781771   5 weeks ago      131MB
 hello-world   latest    bf756fb1ae65   12 months ago    13.3kB
 ```
+
+Let's go over it one last time with our lucid chart, as it might make it clear. So we had right here. We sent the context to the Docker Damon. That's what was inside of our file. And step one was from Ubuntu 16.04 to have that image pulled. That would be this right here. Then I decided to add something a little bit different here. And that's because we went ahead and did our label maintainer from there. We went ahead and did our run at get update. That's gonna be here. And so there was a container container 962b was created with this base image and an update was run. When that update was completed, the container was closed. So it removed that container. Then a container was spun up. With that Intermedia image being the Ubuntu 16.04 that had been updated. There was an intermediate image, which was this right here. A container with this image layer was spun up and python three was installed. Once that was completed, that container was removed and what was left, which would be in this image layer here was our actual layer that would keep. Although we had an image layer built here and here with our maintainer label, those were simply kept in cash. And as they weren't what we requested, they were not kept on the system. But if this is the case, then what's this image here? Well, it's our Ubuntu image which we pulled down from the Docker Hub in order for us to be able to create our new image because it's what our new image was based on. 
+
+Okay, guys, that's it. 
+
+That is how you start out by building your own Docker Images. Hopefully, right now, you're feeling a little comfortable with the concept. And you went I'd encourage you to stick around active this video if you follow it along with your own environment and build out a couple of different Docker files, see what changes you can make and how that changes the resulting image layers and you know it. Just have fun and get to know your Docker environment. 
+
+For now, though, you can go ahead and close out this video and continue on with your Docker journey. 
