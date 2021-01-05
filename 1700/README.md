@@ -165,3 +165,11 @@ Okay, guys, that's it.
 That is how you start out by building your own Docker Images. Hopefully, right now, you're feeling a little comfortable with the concept. And you went I'd encourage you to stick around active this video if you follow it along with your own environment and build out a couple of different Docker files, see what changes you can make and how that changes the resulting image layers and you know it. Just have fun and get to know your Docker environment. 
 
 For now, though, you can go ahead and close out this video and continue on with your Docker journey. 
+
+```
+$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+<none>        <none>    f70b04ba7ac3   11 minutes ago   198MB
+ubuntu        16.04     9499db781771   5 weeks ago      131MB
+hello-world   latest    bf756fb1ae65   12 months ago    13.3kB
+```
