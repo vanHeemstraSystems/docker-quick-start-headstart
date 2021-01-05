@@ -46,6 +46,8 @@ See [README.md](./1800/README.md)
 ### 1900 The Container Lifecycle
 00:08:05
 
+See [README.md](./1900/README.md)
+
 ### 2000 Image and Container Management
 00:07:59
 
