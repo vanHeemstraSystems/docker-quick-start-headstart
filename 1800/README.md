@@ -147,6 +147,11 @@ Hello World!
 
 Now, that was kind of Quick and Dirty Python, but we know that my script can work inside of this containerized environment. 
 
+```
+$/# exit
+$
+```
+
 Now, hopefully this example has provided you with kind of view on why we would be using these containerized environments. Let's say that we had someone who was perhaps using Scientific Linux or maybe even a Red Hat Linux and they were developing on Python 2 sharing this image and allowing them to instantiate a container for a minute and be able to run a script on python three. Do some development or some testing really wouldn't be a big deal. It be quite simple for them to do that. We just did it. 
 
 Okay, everyone, that hopefully you now have a better understanding of how to interact at how to run your containers. 
