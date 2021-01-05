@@ -41,6 +41,8 @@ See [README.md](./1700/README.md)
 ### 1800 Running Containers
 00:08:29
 
+See [README.md](./1800/README.md)
+
 ### 1900 The Container Lifecycle
 00:08:05
 
