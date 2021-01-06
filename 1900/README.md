@@ -202,10 +202,51 @@ CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS         PORT
 
 So what happens if I want to be able to attach to this container again, though. 
 
-Well I can do a docker attach and I could use the name vigorous_ritchie or just the I.D. enough id's to differentiate it from any other running container. 
+Well I can do a ```docker attach``` and I could use the name vigorous_ritchie or just the I.D. enough id's to differentiate it from any other running container. 
 
 So 4f would be about all that I actually need. 
 
-*** WE ARE HERE ***
+```
+$ docker attach 4f [ENTER]
+/#
+/#
+```
 
-Now I've accidentally that fingered and enter here, So that's why we have our double prompt. But I could do something like l s. And you can see that our environment is indeed up and running weakened exit back out of this container. And, as expected, we could do a container at Les and see that this environment or this container is no longer running. Let's do our container l s dash and we can see that once again, it's in a stop status. So hopefully you now have a better understanding of the container life cycle. And I hope that part of you is wondering. OK, so how do we take our script and actually have it run within our environment? That's the questions that we'll get to in the next video. So go ahead and close this one out and continue on with your journey.
+Now I've accidentally entered an Enter here, so that's why we have our double prompt. But I could do something like ls. 
+
+```
+/# ls
+bin  etc  lib64 opt  run  sys var
+boot home media proc sbin tmp
+dev  lib  mnt   root srv  usr
+```
+
+And you can see that our environment is indeed up and running we can exit back out of this container. 
+
+```
+/# exit
+```
+
+And, as expected, we could docker container ls and see that this environment or this container is no longer running. 
+
+```
+$ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
+Let's docker container ls -a and we can see that once again, it's in a stop status. 
+
+```
+$ docker container ls -a
+CONTAINER ID   IMAGE          COMMAND       CREATED             STATUS                          PORTS     NAMES
+4fc9b64b73de   ubuntu:16.04   "/bin/bash"   29 minutes ago      Exited (0) About a minute ago             vigorous_ritchie
+85f4dda842c5   ubuntu:16.04   "/bin/bash"   About an hour ago   Exited (0) 40 minutes ago                 amazing_lichterman
+89c2806c55cd   f7             "/bin/bash"   19 hours ago        Exited (127) 19 hours ago                 python-container
+bc76fb087f98   hello-world    "/hello"      20 hours ago        Exited (0) 20 hours ago                   boring_hoover
+f7b22f1c91c9   hello-world    "/hello"      6 days ago          Exited (0) 6 days ago                     hungry_diffie
+f935aaea254d   hello-world    "/hello"      6 days ago          Exited (0) 6 days ago                     intelligent_robinson
+```
+
+So hopefully you now have a better understanding of the container life cycle. And I hope that part of you is wondering. OK, so how do we take our script and actually have it run within our environment? That's the questions that we'll get to in the next video. 
+
+So go ahead and close this one out and continue on with your journey.
