@@ -216,11 +216,64 @@ Error response from daemon: conflict: unable to delete f70b04ba7ac3 (must be for
 
 The issue being that, the onboarding image depends on that ubuntu image for those four image layers. So while I still have it on my system, it wouldn't really make sense to delete it because I'd be deleting a portion of my image. 
 
-*** WE ARE HERE ***
+```
+$ docker rmi f70b04ba7ac3
+Error response from daemon: conflict: unable to delete 9499db781771 (cannot be forced) - image has dependent child images
+Error response from daemon: conflict: unable to delete f70b04ba7ac3 (must be forced) - image is being used by stopped container 89c2806c55cd
+$ docker container rm 89c2806c55cd
+89c2806c55cd
+$ docker rmi f70b04ba7ac3
+Untagged: wvanheemstra/onboarding:v1
+Untagged: wvanheemstra/onboarding@sha256:dbcb7ee1ff2630b5e058be288de63d219d4472125ac7926e99806b42a2ef7cec
+Deleted: sha256:f70b04ba7ac39dc63182641c4ae20d90cfa8804800a95f7ca6d7fd2506af937d
+Deleted: sha256:989bb4a759702308ae7a070b33b9f9947eb9bb48ab772d97943a6eaf9afdd04c
+Deleted: sha256:4eb1203daaf7b34a8bcc8582f594dc0e482bb61a4baae4693aec034c2b231fd0
+Deleted: sha256:458e24e94b880afa71438d0cedf6d0d9dd6c893d805d508428eacf8878e51fe4
+```
 
-Now that we've deleted that onboarding image, we can go ahead and delete our ubuntu image. Well, what happens when I'm ready to create that v2 what If I want to have v1 as my inspiration. 
+Now that we've deleted that onboarding image, we can go ahead and delete our ubuntu image. 
 
-No problem all I need to do is a docker pull. Tell it what repository it's going ellopunk. I want my onboarding v1 image. And there you go our onboarding image is back on our system. 
+```
+docker rmi 9499db781771
+Untagged: ubuntu:16.04
+Untagged: ubuntu@sha256:3355b6e4ba1b12071ba5fe9742042a2f10b257c908fbdfac81912a16eb463879
+Deleted: sha256:9499db7817713c4d10240ca9f5386b605ecff7975179f5a46e7ffd59fff462ee
+Deleted: sha256:f40485a002f52daa539c4ebf3a9805d74a0396eacb48d09f3774b2c9865a43db
+Deleted: sha256:4c823febe808dcc9c69e7b99a91796fcf125fdde4aac206c9eac13fcfd4ffba3
+Deleted: sha256:ea2e76a9d2f2be4a60d0872a63775f03f9510d7a0aa6bdc68a936e9a7b7b995a
+Deleted: sha256:da2785b7bb163ff867008430c06b6c02d3ffc16fcee57ef38822861af85989ea
+```
+
+```
+$ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+```
+
+Well, what happens when I'm ready to create that v2 what If I want to have v1 as my inspiration. 
+
+No problem all I need to do is a docker pull. Tell it what repository it's going ellopunk (here: wvanheemstra). I want my onboarding v1 image. 
+
+```
+$ docker pull wvanheemstra/onboarding:v1
+v1: Pulling from wvanheemstra/onboarding
+be8ec4e48d7f: Pull complete 
+33b8b485aff0: Pull complete 
+d887158cc58c: Pull complete 
+05895bb28c18: Pull complete 
+929c0cf58f39: Pull complete 
+f16fe488cd2c: Pull complete 
+Digest: sha256:dbcb7ee1ff2630b5e058be288de63d219d4472125ac7926e99806b42a2ef7cec
+Status: Downloaded newer image for wvanheemstra/onboarding:v1
+docker.io/wvanheemstra/onboarding:v1
+```
+
+And there you go our onboarding image is back on our system. 
+
+```
+$ docker image ls
+REPOSITORY                TAG       IMAGE ID       CREATED        SIZE
+wvanheemstra/onboarding   v1        f70b04ba7ac3   25 hours ago   198MB
+```
 
 So hopefully all of you did not find that too complicated. The great thing about docker is that their help pages really do show us everything that we need to know, but for now, hopefully you feel a little bit more comfortable working around your environment and being able to clean up images and containers when they're no longer needed. 
 
