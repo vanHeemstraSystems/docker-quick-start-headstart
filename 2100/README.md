@@ -87,10 +87,68 @@ Now actually, since there are no other containers on this system, we could just 
 Now, the reason that I pause and kind of overemphasize the word exposed is there are two terms that you'll want to be familiar with. 
 One is exposed and the other is published. 
 
-***Exposed*** opens up and exposes of the port inside of the container and makes it available to local host and Internal Services so I'll be able to actually go into this container as usual but also be able to use services is like elinks to connect to the container on Port 80. We'll actually do that in just a bit. 
+***Exposed*** opens up and exposes of the port inside of the container and makes it available to local host and Internal Services so I'll be able to actually go into this container as usual but also be able to use services is like elinks to connect to the container on Port 80. We'll actually do that in just a bit.
 
+To ***publish*** a port, both the host port and the container port can be specified, and they're basically linked to one another so that we have accessibility to the container from the outside world. 
+
+Don't worry, we'll use examples of all of this so you can better understand it. But we need to understand right now is with this port, port 80, being exposed in the container we could connect to it with service is such as elinks. However, we could not connect to it from our Web browser or using the public IP of the server. Now, how do you know what ports are going to be exposed whenever you create an image? Well, you can use the command  Docker image history and then tell them what image you'd like to look at, so that would be Nginx, and we can see that Port 80 is exposed on this container.
+
+```
+$ docker image history nginx
+IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
+ae2feff98a0c   3 weeks ago   /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon…   0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop)  STOPSIGNAL SIGQUIT           0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop)  EXPOSE 80                    0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop)  ENTRYPOINT ["/docker-entr…   0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop) COPY file:0fd5fca330dcd6a7…   1.04kB    
+<missing>      3 weeks ago   /bin/sh -c #(nop) COPY file:0b866ff3fc1ef5b0…   1.96kB    
+<missing>      3 weeks ago   /bin/sh -c #(nop) COPY file:e7e183879c35719c…   1.2kB     
+<missing>      3 weeks ago   /bin/sh -c set -x     && addgroup --system -…   63.7MB    
+<missing>      3 weeks ago   /bin/sh -c #(nop)  ENV PKG_RELEASE=1~buster     0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop)  ENV NJS_VERSION=0.5.0        0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop)  ENV NGINX_VERSION=1.19.6     0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop)  LABEL maintainer=NGINX Do…   0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop)  CMD ["bash"]                 0B        
+<missing>      3 weeks ago   /bin/sh -c #(nop) ADD file:3a7bff4e139bcacc5…   69.2MB  
+```
+
+So let's go ahead and clear our screen and see what this would look like. 
+
+```
+$ clear
+```
+
+So let's do our Docker Container LS so we always remember what continued we're working with. 
+
+```
+$ docker container ls
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+5340f7259a1f   nginx     "/docker-entrypoint.…"   17 minutes ago   Up 17 minutes   80/tcp    objective_blackburn
+```
+
+I know we only have one now, but it's best to get into the spirit of being able to see all of the containers in your system before we start running commands. 
+
+Then we'll do a Docker Container Inspect and I'm gonna grab out the IP address for this container. 
+
+```
+$ docker container inspect | grep IPAdd
+"docker container inspect" requires at least 1 argument.
+See 'docker container inspect --help'.
+
+Usage:  docker container inspect [OPTIONS] CONTAINER [CONTAINER...]
+
+Display detailed information on one or more containers
+```
+
+Now, as I said, it would be really helpful if we specify what container we're working with so let's try that again and use our ID of 53. 
+
+```
+$ docker container inspect 53 | grep IPAdd
+            "SecondaryIPAddresses": null,
+            "IPAddress": "172.17.0.2",
+                    "IPAddress": "172.17.0.2",
+```
 
 *** WE ARE HERE ***
 
-
-To ***publish*** a port, both the host port and the container port can be specified, and they're basically linked to one another so that we have accessibility to the container from the outside world. Don't worry, we'll use examples of all of this so you can better understand it. But we need to understand right now is with this port, port 80, being exposed in the container we could connect to it with service is such as elinks. However, we could not connect to it from our Web browser or using the public IP of the server. Now, how do you know what ports are going to be exposed whenever you create an image? Well, you can use the command  Docker image history and then tell them what image you'd like to look at, so that would be Nginx, and we can see that Port 80 is exposed on this container. So let's go ahead and clear our screen and see what this would look like. So let's do our Docker Container LS so we always remember what continued we're working with. I know we only have one now, but it's best to get into the spirit of being able to see all of the containers in your system before we start running commands. Then we'll do a Docker Container Inspect and I'm gonna grab out the IP address for this container Now, as I said, it would be really helpful if we specify what container we're working with so let's try that again and use our ID of 06. Now you see, this container is running on 172.17.0.2 so let's go ahead and do elinks to it. Now we could specify  port 80 but as web servers by default run on 80 elinks does not require that. We can see Nginx is, in fact, up and running. Now if I tried to do the same command, however, and worked with a local host instead, now you can see here that we're unable to establish a connection. That's because we don't have our local host listening on Port 80 running Nginx. So let's go ahead and try that command again. We'll do our Docker Container run -D but this time we'll use a capital P option with our Nginx image. Docker Container LS will let us know which container is running. Well, what if we used a Docker instead of docket, Now that we have it going, we can see what occurred. So we have on port 32,774 of our hosts system being mapped to port 80 of the container. Now if you've been using Linux Academy servers for a while you know that that port really doesn't do us any good because we don't have access to it, by the way that our servers are made. So what happens if we only have specific ports that we can use and we want to specify port? Let's try Docker Container run -D but this time, let's do a lowercase P. Now we can say that we want port 80 of our host to be made to port 80 of our container, and I'll go ahead and use image HTTP D just to prove to you all that this is not another container that we've already created, that we're a able to connect to. But before I clear my page, I realized that I did miss a little bit of information here. Where did this port 32.774 come from if we never specified it? Well, this is the ephemeral port range, and it's typically import between 32,768 and 61,000 that its chosen from really just kind of depends what the  IP local port range is set to as the kernel perimeter within your box. But that's really more of a topic for a deep dive, and so let's go ahead and clear our screen and see if we can connect to this Apache container. Now we could make use of a great tool by a good friend of mine, Major Hayden. And we can do a curl -4 so we can get an IP address to icanhazip.com. This gives us the IP of our box. Now, remember, if you're following along, you'll need to get the IP for yours, and we can use an elinks to that public IP. And we could specify port 80 but as that's the depot port for an Apache page we can just go ahead and type enter. What do you know? It works. We get the default Apache page. Let's take one last look at our container LS to see what it is that we covered in this video. So we know that by the use of a lower case P, we can specify what port we want to match to what port in our container. And we know that with our next container, we can use a capital P to have a random port chosen that will be mapped to a local port on our container. And finally, if we do absolutely no flags. We just spin up a container we'll only have the port that was exposed in the Docker file for that image. Now there's a lot more that could be done with Docker ports than what we've covered here today. That's one of the downfalls of a quick start is that we really can't do a deep dive. So if you want to learn more about Docker ports, I'd really recommend that you go take our Docker deep dive course. For now, though, you can go ahead and close out this quick start video and continue on to learn about Docker Volumes.
+Now you see, this container is running on 172.17.0.2 so let's go ahead and do elinks to it. Now we could specify  port 80 but as web servers by default run on 80 elinks does not require that. We can see Nginx is, in fact, up and running. Now if I tried to do the same command, however, and worked with a local host instead, now you can see here that we're unable to establish a connection. That's because we don't have our local host listening on Port 80 running Nginx. So let's go ahead and try that command again. We'll do our Docker Container run -D but this time we'll use a capital P option with our Nginx image. Docker Container LS will let us know which container is running. Well, what if we used a Docker instead of docket, Now that we have it going, we can see what occurred. So we have on port 32,774 of our hosts system being mapped to port 80 of the container. Now if you've been using Linux Academy servers for a while you know that that port really doesn't do us any good because we don't have access to it, by the way that our servers are made. So what happens if we only have specific ports that we can use and we want to specify port? Let's try Docker Container run -D but this time, let's do a lowercase P. Now we can say that we want port 80 of our host to be made to port 80 of our container, and I'll go ahead and use image HTTP D just to prove to you all that this is not another container that we've already created, that we're a able to connect to. But before I clear my page, I realized that I did miss a little bit of information here. Where did this port 32.774 come from if we never specified it? Well, this is the ephemeral port range, and it's typically import between 32,768 and 61,000 that its chosen from really just kind of depends what the  IP local port range is set to as the kernel perimeter within your box. But that's really more of a topic for a deep dive, and so let's go ahead and clear our screen and see if we can connect to this Apache container. Now we could make use of a great tool by a good friend of mine, Major Hayden. And we can do a curl -4 so we can get an IP address to icanhazip.com. This gives us the IP of our box. Now, remember, if you're following along, you'll need to get the IP for yours, and we can use an elinks to that public IP. And we could specify port 80 but as that's the depot port for an Apache page we can just go ahead and type enter. What do you know? It works. We get the default Apache page. Let's take one last look at our container LS to see what it is that we covered in this video. So we know that by the use of a lower case P, we can specify what port we want to match to what port in our container. And we know that with our next container, we can use a capital P to have a random port chosen that will be mapped to a local port on our container. And finally, if we do absolutely no flags. We just spin up a container we'll only have the port that was exposed in the Docker file for that image. Now there's a lot more that could be done with Docker ports than what we've covered here today. That's one of the downfalls of a quick start is that we really can't do a deep dive. So if you want to learn more about Docker ports, I'd really recommend that you go take our Docker deep dive course. For now, though, you can go ahead and close out this quick start video and continue on to learn about Docker Volumes.
