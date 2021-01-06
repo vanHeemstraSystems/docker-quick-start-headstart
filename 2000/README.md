@@ -167,7 +167,7 @@ da2785b7bb16: Mounted from library/ubuntu
 v1: digest: sha256:dbcb7ee1ff2630b5e058be288de63d219d4472125ac7926e99806b42a2ef7cec size: 1574
 ```
 
-It says here this push refers to the repository docker.io/ellopunk/onboarding (here: docker.io/wvanheemstra/onboarding). 
+It says here this push refers to the repository docker.io/ellopunk/onboarding (here: https://hub.docker.com/repository/docker/wvanheemstra/onboarding). 
 
 We'll visit that in the docker hub in just a bit, but I do want to take a moment here and look at what you're seeing on your screen. What you see is there were two image layers that were pushed to the Docker hub. However four came from your ubuntu library. Do you recall when we looked at that, ubuntu image. It had four image layers. Those are the ones being copied from the ubuntu to library. After all, there's no reason to push him up if they're already there. right. And our two changes are what are being pushed up to our repository. You don't recall what these changes are. Let's go ahead and cat out our docker files so we can see what changes we made. 
 
@@ -186,10 +186,42 @@ Then we did our ```RUN apt-get update```. That's going to be one of your layers 
 
 And then we did our ```RUN apt-get install -y python3``` which is going to be the other layer that was pushed. 
 
-*** WE ARE HERE ***
-
 Let's jump over and take a look at this in the docker hub. 
+
+```
+https://hub.docker.com/repository/docker/wvanheemstra/onboarding
+```
 
 So here I'm in the docker hub. You can see that I'm logged in as the ellopunk (here: wvanheemstra) user. 
 
-I now have an onboarding repository with my v1 image. If I want to push up additional tags for this repository. Let's say perhaps a v2 it even lets me know how to do that. Now that I have my image in the safe place, I can get to erasing images. But let me show you one last thing. When I tried to erase these images, I tried to erase the ubuntu image before I deleted that onboarding image and I ran into an issue, the issue being that.  The onboarding image depends on that ubuntu image for those four image layers. So while I still have it on my system, it wouldn't really make sense to delete it because I'd be deleting a portion of my image. Now that we've deleted that onboarding image, we can go ahead and delete our ubuntu image. Well, what happens when I'm ready to create that v2 what If I want to have v1 as my inspiration. No problem all I need to do is a docker pull. Tell it what repository it's going ellopunk. I want my onboarding v1 image. And there you go our onboarding image is back on our system. So hopefully all of you did not find that too complicated. The great thing about docker is that their help pages really do show us everything that we need to know, but for now, hopefully you feel a little bit more comfortable working around your environment and being able to clean up images and containers when they're no longer needed. Go ahead and close out this video and we'll continue on with our journey
+I now have an onboarding repository with my v1 image. 
+
+If I want to push up additional tags for this repository. Let's say perhaps a v2 it even lets me know how to do that. 
+
+```
+docker push wvanheemstra/onboarding:tagname
+```
+
+Now that I have my image in the safe place, I can get to erasing images. 
+
+But let me show you one last thing. 
+
+When I tried to erase these images, I tried to erase the ubuntu image before I deleted that onboarding image and I ran into an issue. 
+
+```
+docker rmi 9499db781771 f70b04ba7ac3
+Error response from daemon: conflict: unable to delete 9499db781771 (cannot be forced) - image has dependent child images
+Error response from daemon: conflict: unable to delete f70b04ba7ac3 (must be forced) - image is being used by stopped container 89c2806c55cd
+```
+
+The issue being that, the onboarding image depends on that ubuntu image for those four image layers. So while I still have it on my system, it wouldn't really make sense to delete it because I'd be deleting a portion of my image. 
+
+*** WE ARE HERE ***
+
+Now that we've deleted that onboarding image, we can go ahead and delete our ubuntu image. Well, what happens when I'm ready to create that v2 what If I want to have v1 as my inspiration. 
+
+No problem all I need to do is a docker pull. Tell it what repository it's going ellopunk. I want my onboarding v1 image. And there you go our onboarding image is back on our system. 
+
+So hopefully all of you did not find that too complicated. The great thing about docker is that their help pages really do show us everything that we need to know, but for now, hopefully you feel a little bit more comfortable working around your environment and being able to clean up images and containers when they're no longer needed. 
+
+Go ahead and close out this video and we'll continue on with our journey
