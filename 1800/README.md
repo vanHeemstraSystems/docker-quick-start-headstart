@@ -78,14 +78,14 @@ root@89c2806c55cd:/#
 So let's go ahead and see what version of Linux we're running. Well, we should expect that we should be running on that A boon to 16 0 for image, just as we suspected. 
 
 ```
-$/# cat /etc/issue
+/# cat /etc/issue
 Ubuntu 16.04.7 LTS \n \l
 ```
 
 Well, what about Python? Is it actually installed on this system? So if this build occurred the way that we told it to. We should also have access to a Python three and go ahead and just issue the Command Python three and you'll see that I dropped down into the interactive command line for Python3. 
 
 ```
-$/# python3
+/# python3
 Python 3.5.2 (default, Oct  7 2020, 17:19:02) 
 [GCC 5.4.0 20160609] on linux
 Type "help", "copyright", "credits" or "license" for more information.
@@ -105,7 +105,7 @@ I could exit out of this container and push a script into the container or I can
 Now I can use my command vim and then my script name. 
 
 ```
-$/# vim hello-world.py
+/# vim hello-world.py
 bash: vim: command not found
 ```
 
@@ -116,13 +116,13 @@ Do we really some of my developers, maybe using Nano, they may be using somethin
 But for now, I'll go ahead and install it just for demonstration purposes? No, This is for demonstration and development purposes and not best practices on how to use a container. 
 
 ```
-$/# apt install vim
+/# apt install vim
 ```
 
 Let's go ahead and create that quick hello world script I might do. 
 
 ```
-$/# vim hello-world.py
+/# vim hello-world.py
 ```
 
 This isn't a coding class. We're going to keep it simple here. 
@@ -135,20 +135,20 @@ hello-world.py
 I can go ahead and chmod my file.  
 
 ```
-$/# chmod +x hello-world.py
+/# chmod +x hello-world.py
 ```
 
 Oops python3. There we go.
 
 ```
-$/# python3 hello-world.py
+/# python3 hello-world.py
 Hello World!
 ```
 
 Now, that was kind of Quick and Dirty Python, but we know that my script can work inside of this containerized environment. 
 
 ```
-$/# exit
+/# exit
 $
 ```
 
