@@ -149,15 +149,22 @@ wvanheemstra/onboarding   v1        f70b04ba7ac3   23 hours ago   198MB
 ubuntu                    16.04     9499db781771   5 weeks ago    131MB
 ```
 
-So let's go ahead and push this up to the docker hub. So let's do docker push. ellopunk. is going to be mine. 
+So let's go ahead and push this up to the docker hub. So let's do docker push. ellopunk (here: wvanheemstra). is going to be mine. 
+
+***NOTE***: Create a repository with the name "onboarding" under the account "wvanheemstra" on the Docker Hub first, before proceeding.
 
 Make sure to put your user name in here. We'll do a backslash and I'm going to want to create a repository for this image specifically for my onboarding image. So I'll just call it onboarding. 
 
 ```
-$ docker push wvanheemstra/onboarding
-Using default tag: latest
+$ docker push wvanheemstra/onboarding:v1
 The push refers to repository [docker.io/wvanheemstra/onboarding]
-tag does not exist: wvanheemstra/onboarding:latest
+7ce6b5f3a551: Pushed 
+29e7b0a8f4d7: Pushed 
+1a1a19626b20: Mounted from library/ubuntu 
+5b7dc8292d9b: Mounted from library/ubuntu 
+bbc674332e2e: Mounted from library/ubuntu 
+da2785b7bb16: Mounted from library/ubuntu 
+v1: digest: sha256:dbcb7ee1ff2630b5e058be288de63d219d4472125ac7926e99806b42a2ef7cec size: 1574
 ```
 
 It says here this push refers to the repository docker.io/ellopunk/onboarding (here: docker.io/wvanheemstra/onboarding). 
@@ -177,7 +184,7 @@ Then we did our added our label that didn't create a layer because it's just a c
 
 Then we did our ```RUN apt-get update```. That's going to be one of your layers pushed. 
 
-And then we did our ```RUN apt get install -y python3``` which is going to be the other layer that was pushed. 
+And then we did our ```RUN apt-get install -y python3``` which is going to be the other layer that was pushed. 
 
 *** WE ARE HERE ***
 
