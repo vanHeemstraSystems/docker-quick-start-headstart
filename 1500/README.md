@@ -6,7 +6,7 @@ Additional information about official registries:
 
 https://docs.docker.com/docker-hub/official_repos/#how-do-i-create-a-new-official-repository
 
-## TRANSCRIPT
+## Transcript
 
 Hey, everyone, it's Ell Marquez with linuxacademy.com and today we're here to talk about the Docker hub. So if you've been following along with our Docker Quick start Series, you have docker up and running. And in fact, we did cheat a little bit and we went ahead and ran our first container. But how did that happen? Well, the way that it happened was that we pulled down an image, but I didn't really address where this image was coming from. 
 
