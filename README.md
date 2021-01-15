@@ -66,6 +66,8 @@ See [README.md](./2200/README.md)
 ### 2300 Choose Your Own Adventure: Where Do I Go from Here?
 00:02:23
 
+See [README.md](./2300/README.md)
+
 ## Hands-On Lab:
 
 ### 2400 Working with Docker Images
