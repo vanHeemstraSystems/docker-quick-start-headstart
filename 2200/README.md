@@ -358,6 +358,40 @@ $ docker container inspect devcont
 ]
 ```
 
+And we can see under Mounts we have the type is volume, its name is devvolume. 
+
+Its source is gonna be that internal local storage located at var/lib/docker/volumes/devvolume/_data, and its destination is inside of our container in our app directory. 
+
+We can actually go into the container and take a look at that. All right, so we're gonna be needing our sudo permission, and we're gonna do ls/var/lib/docker/volumes and we can see our dev volume resides here. 
+
+```
+$ sudo ls /var/lib/docker/volumes
+backingFsBlockDev  devvolume  metadata.db
+```
+
+We can list out information inside of it. 
+
+```
+$ sudo ls /var/lib/docker/volumes/devvolume
+_data
+```
+
+As we would expect there really isn't anything in here. 
+
+```
+$ sudo ls /var/lib/docker/volumes/devvolume/_data
+$
+```
+
+It really is what we would expect as we only have that place holder here, so we can actually go into the container and create some data. Let's do that by using the docker container exec command. Now we'll go ahead and execute an interactive terminal with a shell command. 
+
+```
+$ docker container exec -it devcont sh
+#
+```
+
+So here we're logged into my container. 
+
 *** WE ARE HERE ***
 
-And we can see under Mounts we have the type is volume, its name is devvolume. Its source is gonna be that internal local storage located at var/lib/docker/volumes/devvolume/_data, and its destination is inside of our container in our app directory. We can actually go into the container and take a look at that. All right, so we're gonna be needing our sudo permission, and we're gonna do ls/var/lib/docker/volumes and we can see our dev volume resides here. We can list out information inside of it. As we would expect there really isn't anything in here. It really is what we would expect as we only have that place holder here, so we can actually go into the container and create some data. Let's do that by using the docker container exect command. Now we'll go ahead and execute an interactive terminal with a shell command. It would help if I would use the command exec, not exect. So here we're logged into my container. We could do an ls and we can see our app directory. Let's create a file in this app directory. We're just gonna echo hello inside of hello.txt We can do an ls inside of app and see if our  hello file is there. Let's exit out. We can use that ls command to see what's inside of our volume data. Hello text. So what happens if we stop our container? Let's do a docker container stop devcont. We're going to go ahead and actually remove this container from our system. What happens now if we list out the data inside of that volume? It's still here. Let's create a brand new container and let's do docker container run. We're gonna go ahead and create it in a detached mode as always. Let's go ahead and stick with our naming convention and name this container devcont 2. And we'll go ahead and use our -v flag now instead of our mount flag. So we're going to mount devvolume to app. We're gonna use our Nginx image, and there you go. We have a brand new container called devcont2, and devvolume is connected to that container. Let's go ahead and execute a shell into this container so we can see if our hello.txt is there. Do an ls, we see app, go ahead, and list out what's inside of app. What do you know, our hello.txt is indeed in this brand new container. Let's cat that out just to make sure that our data did persist. There you go, hello. Just for a few giggles and maybe to solidify this in our mind, let's go ahead and create a new file inside of this container. We'll go ahead and call this one goodbye and let's just say goodbye. Go ahead and exit, and we're gonna list out those files inside of our volume one more time. And here you go. There is our goodbye.txt. Hopefully you have a better understanding now of how to start using Docker Volume. If you want to know more, I'd encourage you to continue on with our darker, deep dive course. For now though, go ahead and close out this video and continue on with your journey.
+We could do an ls and we can see our app directory. Let's create a file in this app directory. We're just gonna echo hello inside of hello.txt We can do an ls inside of app and see if our  hello file is there. Let's exit out. We can use that ls command to see what's inside of our volume data. Hello text. So what happens if we stop our container? Let's do a docker container stop devcont. We're going to go ahead and actually remove this container from our system. What happens now if we list out the data inside of that volume? It's still here. Let's create a brand new container and let's do docker container run. We're gonna go ahead and create it in a detached mode as always. Let's go ahead and stick with our naming convention and name this container devcont 2. And we'll go ahead and use our -v flag now instead of our mount flag. So we're going to mount devvolume to app. We're gonna use our Nginx image, and there you go. We have a brand new container called devcont2, and devvolume is connected to that container. Let's go ahead and execute a shell into this container so we can see if our hello.txt is there. Do an ls, we see app, go ahead, and list out what's inside of app. What do you know, our hello.txt is indeed in this brand new container. Let's cat that out just to make sure that our data did persist. There you go, hello. Just for a few giggles and maybe to solidify this in our mind, let's go ahead and create a new file inside of this container. We'll go ahead and call this one goodbye and let's just say goodbye. Go ahead and exit, and we're gonna list out those files inside of our volume one more time. And here you go. There is our goodbye.txt. Hopefully you have a better understanding now of how to start using Docker Volume. If you want to know more, I'd encourage you to continue on with our darker, deep dive course. For now though, go ahead and close out this video and continue on with your journey.
