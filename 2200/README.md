@@ -392,6 +392,43 @@ $ docker container exec -it devcont sh
 
 So here we're logged into my container. 
 
+We could do an ls and we can see our app directory. 
+
+```
+# ls
+app  boot  docker-entrypoint.d   etc   lib    media  opt   root  sbin  sys  usr
+bin  dev   docker-entrypoint.sh  home  lib64  mnt    proc  run   srv   tmp  var
+#
+```
+
+Let's create a file in this app directory. 
+
+```
+# echo "Hello'!" >> /app/hello.txt
+```
+
+We're just gonna echo hello inside of hello.txt We can do an ls inside of app and see if our hello file is there. 
+
+```
+# ls app
+hello.txt
+```
+
+Let's exit out. 
+
+```
+# exit
+```
+
+We can use that ls command to see what's inside of our volume data. Hello text. 
+
+```
+$ sudo ls /var/lib/docker/volumes/devvolume/_data
+hello.txt
+```
+
+So what happens if we stop our container? 
+
 *** WE ARE HERE ***
 
-We could do an ls and we can see our app directory. Let's create a file in this app directory. We're just gonna echo hello inside of hello.txt We can do an ls inside of app and see if our  hello file is there. Let's exit out. We can use that ls command to see what's inside of our volume data. Hello text. So what happens if we stop our container? Let's do a docker container stop devcont. We're going to go ahead and actually remove this container from our system. What happens now if we list out the data inside of that volume? It's still here. Let's create a brand new container and let's do docker container run. We're gonna go ahead and create it in a detached mode as always. Let's go ahead and stick with our naming convention and name this container devcont 2. And we'll go ahead and use our -v flag now instead of our mount flag. So we're going to mount devvolume to app. We're gonna use our Nginx image, and there you go. We have a brand new container called devcont2, and devvolume is connected to that container. Let's go ahead and execute a shell into this container so we can see if our hello.txt is there. Do an ls, we see app, go ahead, and list out what's inside of app. What do you know, our hello.txt is indeed in this brand new container. Let's cat that out just to make sure that our data did persist. There you go, hello. Just for a few giggles and maybe to solidify this in our mind, let's go ahead and create a new file inside of this container. We'll go ahead and call this one goodbye and let's just say goodbye. Go ahead and exit, and we're gonna list out those files inside of our volume one more time. And here you go. There is our goodbye.txt. Hopefully you have a better understanding now of how to start using Docker Volume. If you want to know more, I'd encourage you to continue on with our darker, deep dive course. For now though, go ahead and close out this video and continue on with your journey.
+Let's do a docker container stop devcont. We're going to go ahead and actually remove this container from our system. What happens now if we list out the data inside of that volume? It's still here. Let's create a brand new container and let's do docker container run. We're gonna go ahead and create it in a detached mode as always. Let's go ahead and stick with our naming convention and name this container devcont 2. And we'll go ahead and use our -v flag now instead of our mount flag. So we're going to mount devvolume to app. We're gonna use our Nginx image, and there you go. We have a brand new container called devcont2, and devvolume is connected to that container. Let's go ahead and execute a shell into this container so we can see if our hello.txt is there. Do an ls, we see app, go ahead, and list out what's inside of app. What do you know, our hello.txt is indeed in this brand new container. Let's cat that out just to make sure that our data did persist. There you go, hello. Just for a few giggles and maybe to solidify this in our mind, let's go ahead and create a new file inside of this container. We'll go ahead and call this one goodbye and let's just say goodbye. Go ahead and exit, and we're gonna list out those files inside of our volume one more time. And here you go. There is our goodbye.txt. Hopefully you have a better understanding now of how to start using Docker Volume. If you want to know more, I'd encourage you to continue on with our darker, deep dive course. For now though, go ahead and close out this video and continue on with your journey.
