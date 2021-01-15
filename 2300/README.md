@@ -4,9 +4,9 @@ You did it! You completed the Docker Quick Start course. Now what? In this video
 
 ## Transcript
 
-*** WE ARE HERE ***
+Hey everyone, that's it. You're done. You've completed our Docker Quick Start course. 
 
-Hey everyone, that's it. You're done. You've completed our Docker Quick Start course. However, if you're anything like me, you're already wondering what's next? What am I going to learn that's going to help further my knowledge or my career? Well, unfortunately, only you can answer that question. 
+However, if you're anything like me, you're already wondering what's next? What am I going to learn that's going to help further my knowledge or my career? Well, unfortunately, only you can answer that question. 
 
 However, I am here to provide a little bit of guidance. 
 
