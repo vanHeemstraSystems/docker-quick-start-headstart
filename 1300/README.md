@@ -18,6 +18,8 @@ So the first thing that we're going to be doing is we're going to be SSHing into
 
 ```CentOS Linux release 7.8.2003 (Core)```
 
+***NOTE***: For CentOS 8 follow the instruction at https://linuxconfig.org/how-to-install-docker-in-rhel-8
+
 So, for today's example, we're going to be installing on CentOS as mentioned before, there will also be a guide on how to install through Ubuntu. One of the first things that were going to do, though, is ensure that we have all of the packages that we needed in order to be able to install Docker, this is going to include your yum-utils package device mapper, persistent data as well as LVM2. 
 
 ```$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2```
