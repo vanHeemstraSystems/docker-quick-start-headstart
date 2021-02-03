@@ -18,7 +18,15 @@ So the first thing that we're going to be doing is we're going to be SSHing into
 
 ```CentOS Linux release 7.8.2003 (Core)```
 
++++
+
 ***NOTE***: For CentOS 8 follow the instruction at https://linuxconfig.org/how-to-install-docker-in-rhel-8
+
+Red Hat Enterprise Linux 8 does not support Docker: on this distribution it has been replaced by Red Hat own tools like buildah and podman, which are compatible with Docker but don't need a server/client architecture to run. Using native tools, where possible, is always the recommended way to go, but for a reason or another you may still want to install the original Docker. In this tutorial, we saw how it is possible to install Docker CE on Rhel8, by using the official Docker repository for CentOS7, which is a 100% compatible clone.
+
+This is not an ideal solution, and as we saw, at the moment, some workarounds are needed to make Docker work on RHEL8.
+
++++
 
 So, for today's example, we're going to be installing on CentOS as mentioned before, there will also be a guide on how to install through Ubuntu. One of the first things that were going to do, though, is ensure that we have all of the packages that we needed in order to be able to install Docker, this is going to include your yum-utils package device mapper, persistent data as well as LVM2. 
 
