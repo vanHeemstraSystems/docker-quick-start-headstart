@@ -20,7 +20,7 @@ So the first thing that we're going to be doing is we're going to be SSHing into
 
 So, for today's example, we're going to be installing on CentOS as mentioned before, there will also be a guide on how to install through Ubuntu. One of the first things that were going to do, though, is ensure that we have all of the packages that we needed in order to be able to install Docker, this is going to include your yum-utils package device mapper, persistent data as well as LVM2. 
 
-```sudo yum install -y yum-utils device-mapper-persistent-data lvm2```
+```$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2```
 
 As you can see if you're using a Linux Academy Cloud server, these packages have already been installed. However, it never hurts to ensure that they have been installed before proceeding. The next thing that we're going to do is we're going to add the repository that we need in order to install the version of Docker that we're going to be using. 
 
