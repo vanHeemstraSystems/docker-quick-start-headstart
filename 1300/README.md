@@ -197,7 +197,7 @@ See 'docker run --help'.
 That's because our cloud user (note: this is specific for Linux Academy) does not have the permissions to be able to use Docker. And so we can modify this or correct this issue by adding our cloud user to our docker group. 
 
 ```
-sudo usermod -a -G docker cloud_user
+$ sudo usermod -a -G docker cloud_user
 ```
 
 Now, although there are ways to get around needing to log out and log back in when you make these fundamental changes in a Linux environment, it really is best practices just to log out of that user and log back in, in order to ensure that all the environmental variables and changes are read. 
